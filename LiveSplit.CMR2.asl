@@ -14,6 +14,7 @@ state("CMR2")
 	byte currentStage : 0x4173FC;
 	byte isRaceOver : 0x131BCC;
 	byte isMenu : 0x12F0E0;
+	byte countrySpecific : 0x12EA54;
 }
 
 startup
@@ -24,7 +25,10 @@ startup
 init
 {
 	refreshRate = 60;
-    vars.newRally = new List<String> {
+	vars.finland = "";
+	vars.menuLine = "";
+    if (current.countrySpecific == 3)
+	{vars.newRally = new List<String> {
         "grecja",
         "francja",
         "szwecja",
@@ -32,8 +36,22 @@ init
         "kenia",
 		"w�ochy",	// w�ochy
 		"uk"
-    };
+    };}
+	else 
+	{vars.newRally = new List<String> {
+        "greece",
+        "france",
+        "sweden",
+        "australia",
+        "kenya",
+		"italy",	// w�ochy
+		"united ki"
+    };}
 	vars.raceTime = 0;
+if (current.countrySpecific == 3) {vars.finland = "finlandia";}
+else {vars.finland = "finland";};
+if (current.countrySpecific == 3) {vars.menuLine = "Dokonaj w";}
+else {vars.menuLine = "Use the c";};
 }
 
 update {
@@ -54,7 +72,7 @@ start
 {
 	vars.raceTime = 0;
 	// Are we looking at "welcome | finland" screen
-	return current.videoCountry == "finlandia";
+	return current.videoCountry == vars.finland;
 }
 split
 {
@@ -79,5 +97,5 @@ split
 
 reset
 {
-	return (current.videoCountry == "Dokonaj w" && current.videoCountry != old.videoCountry);
+	return (current.videoCountry == vars.menuLine && current.videoCountry != old.videoCountry);
 }
