@@ -43,6 +43,7 @@ init
 		vars.finland = "finlandia";
 		vars.menuLine = "Dokonaj w";
 		vars.arcadeStart = "Klasa";
+		vars.japan = "japonia";
 	}
 	else 
 	{
@@ -58,6 +59,7 @@ init
 		vars.finland = "finland";
 		vars.menuLine = "Use the c";
 		vars.arcadeStart = "Class";
+		vars.japan = "japan";
 	}
 	vars.raceTime = 0;
 	vars.arcadeStop = false;
@@ -89,7 +91,7 @@ update
 			vars.raceTime = vars.raceTime + current.stageTime - old.stageTime;
 		}
 	}
-	else if (vars.category.Contains("arcade"))
+	else if (vars.category.Contains("arcade") || vars.category.Contains("challenge"))
 	{
 		if (current.stageTime - old.stageTime < 300)
 		{
@@ -126,6 +128,10 @@ start
 	{
 		return (old.className == vars.arcadeStart && old.className != current.className);
 	}
+	else if (vars.category.Contains("challenge"))
+	{
+		return current.videoCountry == vars.japan;
+	}
 }
 split
 {
@@ -144,7 +150,7 @@ split
 			// checking the "welcome | country" text
 		 return (vars.newRally.Contains(current.videoCountry) && current.videoCountry != old.videoCountry) || (current.currentRally == 7 && current.currentStage == 10 && current.stageTime != 0 && 
 	(current.ripSS == 0 || current.isRaceOver));}
-	else if (vars.category.Contains("arcade"))
+	else if (vars.category.Contains("arcade") || vars.category.Contains("challenge"))
 	{
 		return (current.isRaceOver && !old.isRaceOver);
 	}
