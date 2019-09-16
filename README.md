@@ -15,6 +15,8 @@ When using them, you will be provided with automatic load time removal and/or au
 - Super Driver (Load remover + autosplitter)
 - Old Tower 128K version w/ Fuse emulator (Autosplitter)
 - Gensou Skydrift (stage autosplitter)
+- Mortyr 2093-1944 (Load remover + autosplitter)
+- ~~Portal 3D (autosplitter)~~ *broken*
 
 # Thanks to
 pitp0 for pulling through all the stupid shit I came up with
