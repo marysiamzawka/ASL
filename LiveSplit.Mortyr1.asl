@@ -1,4 +1,13 @@
-state("Mortyr")
+state("Mortyr", "English")
+{
+	int diffSelect : 0x389064;
+	bool isLoad : 0x389070;
+	string4 testText : 0x3A229B;
+	string2 map : 0xDC578;
+	int finalSplit : 0xC22DC;
+}
+
+state("Mortyr", "Polish")
 {
 	int diffSelect : 0x383990;
 	bool isLoad : 0x38399C;
@@ -53,6 +62,14 @@ startup
 init
 {
 	vars.splits =  new List<string>();
+	if (modules.First().ModuleMemorySize == 4190208)
+	{
+		version = "English";
+	}
+	if (modules.First().ModuleMemorySize == 4165632)
+	{
+		version = "Polish";
+	}
 }
 
 reset
@@ -60,6 +77,14 @@ reset
 	return current.diffSelect == 11 && current.diffSelect != old.diffSelect;
 }
 
+/*
+update
+{
+	print(modules.First().ModuleMemorySize.ToString());
+	// english 4190208
+	// polish 4165632
+}
+*/
 isLoading
 {
 	return current.isLoad;
