@@ -49,6 +49,12 @@ startup
 		vars.objList.Add(Tag.Key);
 	}
 }
+
+init
+{
+	vars.splits =  new List<string>();
+}
+
 reset
 {
 	return current.diffSelect == 11 && current.diffSelect != old.diffSelect;
@@ -61,6 +67,7 @@ isLoading
 
 start
 {
+	vars.splits.Clear();
 	return current.testText == "MAPA" && current.testText != old.testText && current.map == "41";
 }
 
@@ -70,6 +77,7 @@ split
 	{
 		if (vars.objList.Contains(current.map) && settings[current.map])
 		{
+		vars.splits.Add(current.obj);
 		return true;
 		}
 	}
@@ -78,4 +86,8 @@ split
 	{
 		return true;
 	}
+}
+
+exit {
+    timer.IsGameTimePaused = true;
 }
