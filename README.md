@@ -6,6 +6,7 @@ Those are files that are meant for use with LiveSplit speedrun timer.
 When using them, you will be provided with automatic load time removal and/or automatic splitting in certain games.
 
 # Available files
+- Colin McRae Rally (In-game timer + autosplitter)
 - Colin McRae Rally 2.0 (In-game timer + autosplitter)
 - Call of Duty (Load remover + autosplitter)
 - Maluch Racer (Load remover)
