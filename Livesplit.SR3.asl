@@ -329,3 +329,8 @@ isLoading
 {
 	return (current.isLoad == 3 && !vars.passStates.Contains(current.missionPass));
 }
+
+exit
+{
+    timer.IsGameTimePaused = true;
+}
