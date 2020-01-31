@@ -261,13 +261,13 @@ split
 		}
 	}
 
-	if (settings["kinzieGA"] && vars.kinz && (current.missionPass == old.missionPass + 1029655572))
+	if (settings["kinzieGA"] && vars.kinz && vars.completeStates.Contains(current.missionPass) && current.missionPass != old.missionPass)
 	{
 			vars.kinz = false;
 			return true;
 	}	
 
-	if (settings["pierceGA"] && vars.pirs && (current.missionPass == old.missionPass + 1029655572))
+	if (settings["pierceGA"] && vars.pirs && vars.completeStates.Contains(current.missionPass) && current.missionPass != old.missionPass)
 	{
 			vars.pirs = false;
 			return true;
@@ -275,7 +275,7 @@ split
 
 	if (vars.ttc)
 	{
-		if (settings["ttc"] && (current.missionPass == old.missionPass + 1029655572))
+		if (settings["ttc"] && vars.completeStates.Contains(current.missionPass) && current.missionPass != old.missionPass)
 		{
 			vars.ttc = false;
 			return true;
