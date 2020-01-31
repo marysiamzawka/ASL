@@ -122,10 +122,28 @@ init
 	vars.pirs = false;
 	vars.kinz = false;
 	vars.passStates = new List<int>();
-	vars.passStates.Add(1037973993);
+	vars.passStates.Add(1037973993); //1080p
 	vars.passStates.Add(1029655572);
 	vars.passStates.Add(1040572168);
 	vars.passStates.Add(1032183560);
+	vars.passStates.Add(1027216573); //900p
+	vars.passStates.Add(1035546691);
+	vars.passStates.Add(1029643876);
+	vars.passStates.Add(1038032484);
+	vars.passStates.Add(1035108022); //720p
+	vars.passStates.Add(1024777571);
+	vars.passStates.Add(1033119388);
+	vars.passStates.Add(1026719414);
+	vars.passStates.Add(1035887879); //768p
+	vars.passStates.Add(1025427972);
+	vars.passStates.Add(1033766669);
+	vars.passStates.Add(1027499271);
+	
+	vars.completeStates = new List<int>();
+	vars.completeStates.Add(1029655572);
+	vars.completeStates.Add(1027216573);
+	vars.completeStates.Add(1024777571);
+	vars.completeStates.Add(1025427972);
 	vars.cutLines = new List<string>();
 	vars.cutLines.Add("mm_a_04_c2_ph");
 	vars.cutLines.Add("mm_p_06_c2_ph");
@@ -162,7 +180,7 @@ start
 
 split
 {
-	if (current.missionPass == old.missionPass + 1029655572)
+	if (vars.completeStates.Contains(current.missionPass) && current.missionPass != old.missionPass)
 	{
 		if (vars.objList.Contains(current.missionBank) && settings[current.missionBank] && !vars.splits.Contains(current.missionBank))
 		{
@@ -325,12 +343,14 @@ split
 
 }
 
-isLoading
-{
-	return (current.isLoad == 3 && !vars.passStates.Contains(current.missionPass));
-}
 
 exit
 {
     timer.IsGameTimePaused = true;
+}
+
+
+isLoading
+{
+	return (current.isLoad == 3 && !vars.passStates.Contains(current.missionPass));
 }
