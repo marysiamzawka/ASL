@@ -36,6 +36,8 @@ state("SaintsRowTheThird_DX11")
 	// cutscene stuff
 	bool isCutscene : 0xEEAB80;
 	int cutsceneCheck : 0x4542FEC;
+	// non-essential collectibles
+	int assassinations: 0x451F070;
 	
 }
 // 1029655572
@@ -112,6 +114,9 @@ startup
 	settings.Add("moneypallet", true, "Money Pallets", "collectibles");
 	settings.Add("photoops", true, "Photo Ops", "collectibles");
 	settings.Add("sexdolls", true, "Sex Dolls", "collectibles");
+	
+	settings.Add("miscstuff", false, "Miscellanous");
+	settings.Add("assassinations", true, "Assassinations", "miscstuff");
 }
 
 init
@@ -325,6 +330,14 @@ split
     if (settings["drugpackage"])
     {
         if (current.drugpackage == old.drugpackage+1)
+        {
+            return true;
+        }
+    }
+    
+    if (settings["assassinations"])
+    {
+        if (current.assassinations == old.assassinations+1)
         {
             return true;
         }
