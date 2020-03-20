@@ -20,4 +20,7 @@ When using them, you will be provided with automatic load time removal and/or au
 - ~~Portal 3D (autosplitter)~~ *broken*
 
 # Thanks to
-pitp0 for pulling through all the stupid shit I came up with
+* pitp0 for pulling through all the stupid shit I came up with in the early days
+* hoxi, rythin, Fl1tch for helping out with various scripts
+* Katinjegat for the TCNYC autosplitter (been using it forever as basis for level options)
+* Everyone who finds these scripts useful
