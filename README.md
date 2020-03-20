@@ -9,7 +9,7 @@ When using them, you will be provided with automatic load time removal and/or au
 - Colin McRae Rally (In-game timer + autosplitter)
 - Colin McRae Rally 2.0 (In-game timer + autosplitter)
 - Call of Duty (Load remover + autosplitter)
-- Maluch Racer (Load remover)
+- Maluch Racer (Load remover + autosplitter)
 - World War 2: Sniper/Rajd na Berlin: Oddziały specjalne (Load remover)
 - Saints Row: The Third (Autosplitter + load remover)
 - Saints Row IV (Load remover)
