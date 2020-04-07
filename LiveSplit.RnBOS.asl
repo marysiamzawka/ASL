@@ -17,5 +17,10 @@ split
 
 start
 {
-	return (current.mapName == "ds\\M1" && current.isPaused);
+	return (current.mapName == "ds\\C1" && current.isPaused);
+}
+
+reset
+{
+	return (current.mapName "ds\\C1" && current.mapName != old.mapName);
 }
