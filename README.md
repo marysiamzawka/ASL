@@ -12,7 +12,7 @@ When using them, you will be provided with automatic load time removal and/or au
 - Maluch Racer (Load remover + autosplitter)
 - World War 2: Sniper/Rajd na Berlin: Oddziały specjalne (Load remover + autosplitter)
 - Saints Row: The Third (Autosplitter + load remover)
-- Saints Row IV (Load remover)
+- Saints Row IV (Autosplitter + Load remover)
 - Super Driver (Load remover + autosplitter)
 - Old Tower 128K version w/ Fuse emulator (Autosplitter)
 - Gensou Skydrift (stage autosplitter)
