@@ -30,14 +30,27 @@ init
 	{
 		version = "Current Steam";
 	}
+	
+	vars.rewardCheck = false;
 }
 
+update
+{
+	if (!current.zeroIfComplete && old.zeroIfComplete)
+	{vars.rewardCheck = true;}
+}
 
 split
 {
+
 	if
-	(!current.zeroIfComplete && current.passCheck == 4000 && current.passCheck != old.passCheck && old.zeroIfComplete)
-	return true;
+	(	
+		vars.rewardCheck && current.passCheck == 4000
+	)
+	{
+		vars.rewardCheck = false;
+		return true;
+	}
 	
 	if
 	(
