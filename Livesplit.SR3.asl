@@ -19,10 +19,10 @@ state("SaintsRowTheThird_DX11")
 	int totalActivities : 0x451ED58;
 	int isLoad : 0xEEAAAC;
 	// collectibles
-    int sexdolls : 0x451EF50;
-    int photoops : 0x451EF98;
-    int moneypallet : 0x451EF08;
-    int drugpackage : 0x451EEC0;
+    	int sexdolls : 0x451EF50;
+    	int photoops : 0x451EF98;
+    	int moneypallet : 0x451EF08;
+   	int drugpackage : 0x451EEC0;
 	// activities
 	int escort : 0x451F100;
 	int genki : 0x451F268;
@@ -84,6 +84,19 @@ startup
 		settings.Add(Tag.Key, true, Tag.Value, "missions");
 		vars.objList.Add(Tag.Key);
 	}
+	settings.Add("dlc", false, "DLC Missions");
+	vars.dlcTags = new Dictionary<string,string> {
+		{"dlc2_m01_media.bnk_pc", "Faster, More Intense!"},
+		{"dlc2_m02_media.bnk_pc", "Hangar 18 1/2"},
+		{"dlc2_m03_media.bnk_pc", "That's Not in the Script!"},
+		{"DLC3_M01_media.bnk_pc", "Weird Science"},
+		{"DLC3_M02_media.bnk_pc", "Tour de Farce"},
+		{"DLC3_M03_media.bnk_pc", "Send in the Clones"},
+	};
+	foreach (var Tag in vars.dlcTags) {
+		settings.Add(Tag.Key, true, Tag.Value, "dlc");
+		vars.objList.Add(Tag.Key);
+	}	
 	settings.Add("cutscenes", true, "Cutscenes");
 	vars.cutsceneIds = new Dictionary<int,string> {
 		{1111001216,"We've Only Just Begun"},
