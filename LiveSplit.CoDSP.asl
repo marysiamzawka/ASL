@@ -51,8 +51,9 @@ init {
 
 start {
 	// checks if the 1st map is done loading and if we're in game
-	if (current.somethingLoading == "training.bsp" && current.levelName == "training.bsp" && current.inGame == 1)
+	if (current.somethingLoading == "training.bsp" && current.levelName == "training.bsp" && current.inGame == 1) {
 		vars.doneMaps.Clear();
+		vars.doneMaps.Add("training.bsp");
 		return true;
 	}
 }
