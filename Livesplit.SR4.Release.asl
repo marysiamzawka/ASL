@@ -20,6 +20,22 @@ state("SaintsRowIV", "Pre-Workshop cracked")
 	int passCheck : 0x5211798;
 }
 
+startup
+{
+    vars.aslName = "Saints Row IV Autosplitter";
+    if(timer.CurrentTimingMethod == TimingMethod.RealTime)
+        {
+            var timingMessage = MessageBox.Show(
+                "This game uses Game Time (time without loads) as the main timing method.\n"+
+                "LiveSplit is currently set to show Real Time (time INCLUDING loads).\n"+
+                "Would you like the timing method to be set to Game Time for you?",
+                vars.aslName+" | LiveSplit",
+                MessageBoxButtons.YesNo,MessageBoxIcon.Question
+            );
+            if (timingMessage == DialogResult.Yes) timer.CurrentTimingMethod = TimingMethod.GameTime;
+	}
+}
+
 init
 {
 	if (modules.First().ModuleMemorySize == 133226496)
