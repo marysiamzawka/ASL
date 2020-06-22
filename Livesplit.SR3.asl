@@ -44,6 +44,18 @@ state("SaintsRowTheThird_DX11")
 
 startup
 {
+	vars.aslName = "Saints Row: The Third Autosplitter";
+    if(timer.CurrentTimingMethod == TimingMethod.RealTime)
+        {
+            var timingMessage = MessageBox.Show(
+                "This game uses Game Time (time without loads) as the main timing method.\n"+
+                "LiveSplit is currently set to show Real Time (time INCLUDING loads).\n"+
+                "Would you like the timing method to be set to Game Time for you?",
+                vars.aslName+" | LiveSplit",
+                MessageBoxButtons.YesNo,MessageBoxIcon.Question
+            );
+            if (timingMessage == DialogResult.Yes) timer.CurrentTimingMethod = TimingMethod.GameTime;
+	}
 	settings.Add("missions", true, "Missions");
 	vars.missionTags = new Dictionary<string,string> {
 		{"m01_media.bnk_pc","When Good Heists Go Bad"},
