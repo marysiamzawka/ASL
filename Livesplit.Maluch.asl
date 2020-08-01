@@ -1,5 +1,9 @@
 state("maluch")
 {
+}
+
+state("maluch", "1.4")
+{
 	int isLoad : 0x133E88;
 	int currentCp : 0xEF4F0;
 	int totalCp : 0xEF91C;
@@ -8,6 +12,23 @@ state("maluch")
 	bool inMenu : 0x83608;
 	bool hasControl : 0x92568;
 }
+
+state("maluch", "1.5")
+{
+	int isLoad : 0xF0524;
+	int currentCp : 0xABBA0;
+	int totalCp : 0xABFCC;
+	int currentLevel : 0x92B8C;
+	bool hiperLevel : 0x91528;
+	bool inMenu : 0x83620;
+	bool hasControl : 0x92CA0;
+}
+
+init
+{
+    version = modules.First().FileVersionInfo.FileVersion;
+}
+
 
 isLoading
 {
