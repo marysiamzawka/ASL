@@ -4,7 +4,7 @@ state("maluch")
 
 state("maluch", "1.3")
 {
-	int isLoad : 0x133E88;
+	int isLoad : 0xEFCCC;
 	int currentCp : 0xEF4F0;
 	int totalCp : 0xEF91C;
 	int currentLevel : 0x92454;
