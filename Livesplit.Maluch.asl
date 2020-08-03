@@ -2,6 +2,17 @@ state("maluch")
 {
 }
 
+state("maluch", "1.3")
+{
+	int isLoad : 0x133E88;
+	int currentCp : 0xEF4F0;
+	int totalCp : 0xEF91C;
+	int currentLevel : 0x92454;
+	bool hiperLevel : 0x914A8;
+	bool inMenu : 0x83608;
+	bool hasControl : 0x92568;
+}
+
 state("maluch", "1.4")
 {
 	int isLoad : 0x133E88;
