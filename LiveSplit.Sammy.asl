@@ -72,6 +72,7 @@ startup
 	settings.Add("S1", false, "Split when entering Tutorial 1", "ae");
 	settings.Add("Z1", false, "Split when entering Jump'n'Run 1", "ae");
 	settings.Add("M1", false, "Split when entering Think'n'Run 1", "ae");
+	settings.SetToolTip("S1", "Might be buggy, the game is sucks");
 }
 
 init
@@ -107,21 +108,19 @@ split
 	
 	//area entry splits
 	if (current.levelName != old.levelName) {
-		if (old.levelName.ToLowerInvariant() == "menu1.wmb" || old.levelName.ToLowerInvariant() == "menu_greenpepper.wmb") {
-			if (settings["S1"] && current.levelName.ToLowerInvariant() == "10001.wmb" && vars.splits.Contains("S1")) {
-				vars.splits.Add("S1");
-				return true;
-			}
+		if (settings["S1"] && current.levelName.ToLowerInvariant() == "10001.wmb" && !vars.splits.Contains("S1c")) {
+			vars.splits.Add("S1c");
+			return true;
+		}
 		
-			if (settings["Z1"] && current.levelName.ToLowerInvariant() == "101o_j.wmb" && vars.splits.Contains("Z1")) {
-				vars.splits.Add("Z1");
-				return true;
-			}
+		if (settings["Z1"] && current.levelName.ToLowerInvariant() == "101o_j.wmb" && !vars.splits.Contains("Z1c")) {
+			vars.splits.Add("Z1c");
+			return true;
+		}
 		
-			if (settings["M1"] && current.levelName.ToLowerInvariant() == "106g_t.wmb" && vars.splits.Contains("M1")) {
-				vars.splits.Add("M1");
-				return true;
-			}
+		if (settings["M1"] && current.levelName.ToLowerInvariant() == "106g_t.wmb" && !vars.splits.Contains("M1c")) {
+			vars.splits.Add("M1c");
+			return true;
 		}
 	}
 }
