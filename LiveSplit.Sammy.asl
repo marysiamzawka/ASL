@@ -1,16 +1,14 @@
-state("sammypolish")
-{
+state("sammypolish") {
 	string20 levelName : 0xA5AB8;
 	//int levelEnd : 0x1B8BF4;
 }
 
-state("wrun")
-{
-    string20 levelName : 0x13E368;
+state("wrun") {
+    string20 levelName: 0x13E368;
+    byte blackScreen:	0x78D2F;
 }
 
-startup
-{
+startup {
 	vars.objList = new List<string>();
 	settings.Add("szkolenie", true, "Tutorial");
 	vars.szkolTags = new Dictionary<string,string> {
@@ -73,10 +71,11 @@ startup
 	settings.Add("Z1", false, "Split when entering Jump'n'Run 1", "ae");
 	settings.Add("M1", false, "Split when entering Think'n'Run 1", "ae");
 	settings.SetToolTip("S1", "Might be buggy, the game is sucks");
+	
+	vars.pausePrevention = false;
 }
 
-init
-{
+init {
 	vars.splits = new List<string>();
 	vars.lastLevels = new List<string>();
 	vars.lastLevels.Add("109o_t.wmb");
@@ -84,8 +83,19 @@ init
 	vars.lastLevels.Add("10011.wmb");
 }
 
-split
-{
+update {
+	if (game.ProcessName == "wrun") {
+		if (current.levelName == "EXTRO4.WMB" && current.blackScreen == 0 && old.blackScreen != 0) {
+			vars.pausePrevention = true;
+		}
+	
+		if (current.levelName != "EXTRO4.WMB") {
+			vars.pausePrevention = false;
+		}
+	}
+}
+
+split {
 	//level end splits
 	if (current.levelName != old.levelName) {
 		//levels 1-11
@@ -125,13 +135,30 @@ split
 	}
 }
 
-start
-{
+start {
 	if (old.levelName.ToLowerInvariant() == "menu_greenpepper.wmb" || old.levelName.ToLowerInvariant() == "menu1.wmb") {
 		if (current.levelName != old.levelName) {
 			vars.splits.Clear();
 			//vars.splits.Add(current.levelName);
 			return true;
+		}
+	}
+}
+
+isLoading {
+	if (game.ProcessName == "wrun") {
+		if (current.blackScreen != 0) {
+			if (current.levelName != "EXTRO4.WMB") {
+				return true;
+			}
+		
+			else if (current.levelName == "EXTRO4.WMB" && vars.pausePrevention == false) {
+				return true;
+			}
+		}
+	
+		else {
+			return false;
 		}
 	}
 }
