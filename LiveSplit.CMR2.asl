@@ -17,6 +17,7 @@ state("CMR2")
 	byte isMenu : 0x12F0E0;
 	byte countrySpecific : 0x12EA54;
 	bool isPause : 0x120870;
+	int endTime : 0x13D1B8;
 }
 
 startup
@@ -67,7 +68,7 @@ init
 
 update 
 {	
-	var disableTimer = current.currentStage == 10 && (current.isRaceOver || current.ripSS == 0);
+/*	var disableTimer = current.currentStage == 10 && (current.isRaceOver || current.ripSS == 0);
 		
 		
 	if (current.stageTime != 0 && (current.stageTime - old.stageTime > 300))
@@ -103,6 +104,10 @@ update
 				}
 			}
 		}
+	}*/
+	if (current.endTime != old.endTime)
+	{
+		vars.raceTime = vars.raceTime + current.endTime;
 	}
 }
 
