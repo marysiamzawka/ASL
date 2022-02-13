@@ -16,59 +16,32 @@ state("Mortyr", "Polish")
 	int finalSplit : 0xBE2B4;
 }
 
+state("Mortyr", "CoolGames")
+{
+	int diffSelect : 0x383964; 
+	bool isLoad : 0x383970; 
+	string2 testText : 0x39CBC3; 
+	string2 map : 0xD6E78; 
+	int finalSplit : 0xBE2B8; 
+}
+
+
 startup
 {
-	vars.mapTags = new Dictionary<string,string> {
-		{"01","Zewnętrzna Cytadela"},
-		{"30","Przez Cytadelę"},
-		{"10","Zamek Średni"},
-		{"33","Wewnętrzny Zamek"},
-		{"11","Katedra"},
-		{"34","Ciemniejsza Katedra"},
-		{"12","Cmentarz"},
-		{"13","Zamek Wysoki"},
-		{"14","Mniejsza Katedra"},
-		{"17","Fabryka"},
-		{"35","Park Maszynowy"},
-		{"07","Peron"},
-		{"08","Przystań U-Boot'ów"},
-		{"32","Doki"},
-		{"06","Fabryka V2"},
-		{"09","Ruiny Miasta"},
-		{"24","Pojedynek"},
-		{"15","Maszyna Czasu"},
-		{"02","Maszyna Czasu - Dalej"},
-		{"28","Zaplecza Maszyny Czasu"},
-		{"05","Podziemne Kanały"},
-		{"31","Ścieki"},
-		{"18","Kraftwerk"},
-		{"03","Fabryka Droidów"},
-		{"19","Centrum Obliczeniowe"},
-		{"04","Miasto w Chmurach"},
-		{"16","Port Kosmiczny"},
-		{"29","Hangar 18"},
-		{"23","Latająca Forteca"}
-	};
-	
-	vars.objList = new List<string>();	
-	
-	foreach (var Tag in vars.mapTags)
-	{
-		settings.Add(Tag.Key, true, Tag.Value);
-		vars.objList.Add(Tag.Key);
-	}
+	vars.splits =  new List<string>();
 }
 
 init
 {
-	vars.splits =  new List<string>();
+	
+	vars.value = memory.ReadValue<byte>(modules.First().BaseAddress + 0xBE2B4);
 	if (modules.First().ModuleMemorySize == 4190208)
 	{
 		version = "English";
 	}
-	if (modules.First().ModuleMemorySize == 4165632)
+	else if (modules.First().ModuleMemorySize == 4165632)
 	{
-		version = "Polish";
+		version = vars.value==2 ? "CoolGames" : "Polish";
 	}
 }
 
@@ -80,11 +53,12 @@ reset
 /*
 update
 {
-	print(modules.First().ModuleMemorySize.ToString());
+	//print(modules.First().ModuleMemorySize.ToString());
 	// english 4190208
-	// polish 4165632
+	// polish or CoolGames 4165632
 }
 */
+
 isLoading
 {
 	return current.isLoad;
@@ -93,16 +67,20 @@ isLoading
 start
 {
 	vars.splits.Clear();
-	return current.testText == "MAPA" && current.testText != old.testText && current.map == "41";
+	if(version=="CoolGames")
+	{
+		return current.testText=="//" && current.testText != old.testText && current.map == "41";
+	}
+	else return current.testText == "MAPA" && current.testText != old.testText && current.map == "41";
 }
 
 split
 {
 	if (current.map != old.map && current.map != "41")
 	{
-		if (vars.objList.Contains(current.map) && settings[current.map])
+		if (!vars.splits.Contains(current.map))
 		{
-		vars.splits.Add(current.obj);
+		vars.splits.Add(current.map);
 		return true;
 		}
 	}
